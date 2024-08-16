@@ -2,7 +2,7 @@ from django.db import models
 
 # Create your models here.
 class Tag(models.Model):
-    name = models.CharField(max_length=25, null=False, unique=True)
+    name = models.CharField(max_length=100, null=False, unique=True)
 
 class Authors(models.Model):
     fullname = models.CharField(max_length=50, null=False)

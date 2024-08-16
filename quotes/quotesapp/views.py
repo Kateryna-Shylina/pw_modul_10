@@ -5,7 +5,8 @@ from .models import Tag, Authors, Qoutes
 
 # Create your views here.
 def main(request):
-    return render(request, 'quotesapp/index.html')
+    authors = Authors.objects.prefetch_related('qoutes_set__tags').all()
+    return render(request, 'quotesapp/index.html', {'authors': authors})
 
 def tag(request):
     if request.method == 'POST':
@@ -54,3 +55,5 @@ def detail(request, author_id):
     author = get_object_or_404(Authors, pk=author_id)
     quotes = Qoutes.objects.filter(author=author)
     return render(request, 'quotesapp/detail.html', {"author": author, "quotes": quotes})
+
+
